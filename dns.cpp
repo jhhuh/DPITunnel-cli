@@ -20,7 +20,7 @@
 
 #define CPPHTTPLIB_OPENSSL_SUPPORT
 
-#include <cpp-httplib/httplib.h>
+#include <httplib.h>
 
 #include <base64.h>
 

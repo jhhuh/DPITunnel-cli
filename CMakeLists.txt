@@ -12,11 +12,14 @@ endif ()
 # Set the project name
 project(DPITunnel-cli)
 
+find_package(PkgConfig REQUIRED)
+
 # Add dependencies
 add_subdirectory(RawSocket)
-add_subdirectory(cpp-httplib)
-add_subdirectory(dnslib)
-add_subdirectory(libnl)
+
+pkg_check_modules(LIBNL REQUIRED libnl-genl-3.0)
+pkg_check_modules(CPP-HTTPLIB REQUIRED cpp-httplib)
+pkg_check_modules(DNSLIB REQUIRED dnslib)
 
 # Add an executable
 add_executable(DPITunnel-cli-exec
@@ -44,10 +47,11 @@ target_include_directories(DPITunnel-cli-exec
         PRIVATE
         ${PROJECT_SOURCE_DIR}/include
         ${PROJECT_SOURCE_DIR}/RawSocket/include
-        ${PROJECT_SOURCE_DIR}/cpp-httplib/include
-        ${PROJECT_SOURCE_DIR}/dnslib/include
-        ${PROJECT_SOURCE_DIR}/libnl/include
         )
+
+target_include_directories(DPITunnel-cli-exec PUBLIC ${LIBNL_INCLUDE_DIRS})
+target_include_directories(DPITunnel-cli-exec PUBLIC ${CPP-HTTPLIB_INCLUDE_DIRS})
+target_include_directories(DPITunnel-cli-exec PUBLIC ${DNSLIB_INCLUDE_DIRS})
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
@@ -61,11 +65,13 @@ target_link_libraries(DPITunnel-cli-exec
         RawSocket
         cpp-httplib
         dnslib
-        libnl
         Threads::Threads
         OpenSSL::SSL
         OpenSSL::Crypto
         )
+target_link_libraries(DPITunnel-cli-exec ${LIBNL_LIBRARIES})
+target_link_libraries(DPITunnel-cli-exec ${CPP-HTTPLIB_LIBRARIES})
+target_link_libraries(DPITunnel-cli-exec ${DNSLIB_LIBRARIES})
 
 if (STATIC_BINARY)
     target_link_libraries(DPITunnel-cli-exec ${CMAKE_DL_LIBS})

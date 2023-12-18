@@ -1,0 +1,62 @@
+{
+  "nodes": {
+    "cpp-httplib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1702868676,
+        "narHash": "sha256-PthyQ+R3GQn30cwSeUNBRSnGh7cXzWNaOQI8jEHT5OA=",
+        "owner": "yhirose",
+        "repo": "cpp-httplib",
+        "rev": "3a8adda38169af50f17b89895db582fd95f1dd2f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yhirose",
+        "repo": "cpp-httplib",
+        "type": "github"
+      }
+    },
+    "dnslib": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699512048,
+        "narHash": "sha256-eEjTH4ZmLST3GXnAi3Zj1LSQLKDCYUWk9zCEeQWwyv4=",
+        "owner": "takifujis",
+        "repo": "dnslib",
+        "rev": "b1f56386995719cc7ef56fc7cd1a5d2587410de3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "takifujis",
+        "ref": "develop",
+        "repo": "dnslib",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1702780907,
+        "narHash": "sha256-blbrBBXjjZt6OKTcYX1jpe9SRof2P9ZYWPzq22tzXAA=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "1e2e384c5b7c50dbf8e9c441a9e58d85f408b01f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-23.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "cpp-httplib": "cpp-httplib",
+        "dnslib": "dnslib",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}
