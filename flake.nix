@@ -23,10 +23,10 @@
           src = inputs.cpp-httplib;
           nativeBuildInputs = [ meson ninja pkg-config ];
           buildInputs = [ openssl brotli zlib ];
-          mesonFlags = ["-D cpp-httplib_compile=true"];
+          mesonFlags = ["-Dcpp-httplib_compile=true"];
         };
 
-      mk-dnslib = { stdenv, cmake, pkg-config }:
+      mk-dnslib = { stdenv, cmake, pkg-config, openssl }:
         stdenv.mkDerivation {
           name = "dnslib";
           #src = ./dnslib;
@@ -66,6 +66,7 @@
             mkdir -p $out/bin
             cp ./DPITunnel-cli-exec $out/bin/DPITunnel-cli
           '';
+          #cmakeFlags = [ "-DSTATIC_BINARY=true" "-DOPENSSL_ROOT_DIR=${openssl.out}" ];
         };
 
       overlay = self: super:
@@ -77,6 +78,8 @@
 
     in
       {
+
+        inherit pkgs;
 
         packages.${system}.default = pkgs.DPITunnel-cli;
 

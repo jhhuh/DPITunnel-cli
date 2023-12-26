@@ -17,9 +17,13 @@ find_package(PkgConfig REQUIRED)
 # Add dependencies
 add_subdirectory(RawSocket)
 
+pkg_check_modules(OPENSSL REQUIRED openssl)
+pkg_check_modules(OPENSSL_CRYPTO REQUIRED libcrypto)
 pkg_check_modules(LIBNL REQUIRED libnl-genl-3.0)
 pkg_check_modules(CPP-HTTPLIB REQUIRED cpp-httplib)
 pkg_check_modules(DNSLIB REQUIRED dnslib)
+
+set(OPENSSL_ROOT_DIR "${OPENSSL_PREFIX}")
 
 # Add an executable
 add_executable(DPITunnel-cli-exec
